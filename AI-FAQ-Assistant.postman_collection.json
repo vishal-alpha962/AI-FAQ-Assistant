@@ -1,0 +1,219 @@
+{
+  "info": {
+    "name": "AI FAQ Assistant",
+    "_postman_id": "ai-faq-assistant-collection",
+    "description": "Basic API tests for the AI FAQ Assistant.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Vishal\",\n  \"email\": \"vishal@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/register",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "register"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"vishal@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/auth/login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "auth",
+            "login"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create FAQ",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"What is Node.js?\",\n  \"answer\": \"Node.js is a JavaScript runtime for server-side applications.\",\n  \"category\": \"Backend\",\n  \"tags\": [\n    \"node\",\n    \"javascript\"\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/faqs",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "faqs"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get FAQs",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/faqs",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "faqs"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Semantic Search",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/faqs/semantic-search?q=javascript backend",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "faqs",
+            "semantic-search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "javascript backend"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Generate FAQs",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"topic\": \"MongoDB basics\",\n  \"count\": 5\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/ai/generate",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "generate"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ask Assistant",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"What is Node.js?\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/ai/ask",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "ai",
+            "ask"
+          ]
+        }
+      }
+    }
+  ]
+}
